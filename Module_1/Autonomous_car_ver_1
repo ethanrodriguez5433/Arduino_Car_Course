@@ -1,0 +1,74 @@
+#include <Stepper.h>
+
+//Define motor/driver inputs
+#define STEPPER11 7
+#define STEPPER12 6
+#define STEPPER13 5
+#define STEPPER14 4
+
+#define STEPPER21 13
+#define STEPPER22 12
+#define STEPPER23 11
+#define STEPPER24 10
+
+const int STEPS_PER_REV = 2048;  // For 28BYJ-48 motors, adjust as per your motor's specs
+
+//Create Motor objects
+Stepper motor1(STEPS_PER_REV, STEPPER11, STEPPER13, STEPPER12, STEPPER14);  // Pins for Motor 1
+Stepper motor2(STEPS_PER_REV, STEPPER21, STEPPER23, STEPPER22, STEPPER24);  // Pins for Motor 2
+//Set up runs only once, immediately when arduino is powered
+void setup() {
+ motor1.setSpeed(15); //set speed of motors
+ motor2.setSpeed(15);
+}
+
+//Loop continuously runs as long as arduino is powered
+void loop() {
+  int randMov;
+  randMov = random(0, 3);
+  
+  if(randMov == 0)
+  {
+    moveForward();
+  }
+  else if(randMov == 1)
+  {
+    moveBackward();
+  }
+  else if(randMov == 2)
+  {
+    moveLeft();
+  } 
+  else
+  {
+    moveRight();
+  }
+}
+
+void moveForward()
+{
+  motor1.step(-STEPS_PER_REV);
+  motor2.step(STEPS_PER_REV);
+  delay(500);
+}
+
+void moveBackward()
+{
+  motor1.step(STEPS_PER_REV);
+  motor2.step(-STEPS_PER_REV);
+  delay(500);
+}
+
+void moveLeft()
+{
+  motor1.step(STEPS_PER_REV);
+  motor2.step(STEPS_PER_REV);
+  delay(500);
+}
+
+void moveRight()
+{
+  motor1.step(-STEPS_PER_REV);
+  motor2.step(-STEPS_PER_REV);
+  delay(500);
+}
