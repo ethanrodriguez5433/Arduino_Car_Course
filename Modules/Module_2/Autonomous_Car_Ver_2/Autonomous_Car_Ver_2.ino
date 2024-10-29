@@ -1,9 +1,8 @@
-
 //Define motor/driver inputs
-#define PIN1 6
-#define PIN2 7
-#define PIN3 10
-#define PIN4 11
+#define PIN1 10
+#define PIN2 11
+#define PIN3 6
+#define PIN4 7
 
 #define trigPin 9
 #define echoPin 8
@@ -59,6 +58,16 @@ void moveForward()
   //set pins 1 & 4 to low and 2 & 3 to high
   digitalWrite(PIN1, LOW);
   digitalWrite(PIN2, HIGH);
+  digitalWrite(PIN3, LOW);
+  digitalWrite(PIN4, HIGH);
+  delay(1000);
+}
+
+void moveBackward()
+{
+  //set pins 2 & 3 to low and 1 & 4 to high
+  digitalWrite(PIN1, HIGH);
+  digitalWrite(PIN2, LOW);
   digitalWrite(PIN3, HIGH);
   digitalWrite(PIN4, LOW);
   delay(1000);
@@ -69,6 +78,16 @@ void moveLeft()
   //set pins 1 & 3 to high and 2 & 4 to low 
   digitalWrite(PIN1, HIGH);
   digitalWrite(PIN2, LOW);
+  digitalWrite(PIN3, LOW);
+  digitalWrite(PIN4, HIGH);
+  delay(1000);
+}
+
+void moveRight()
+{
+  //set pins 2 & 4 to high and 1 & 3 to low
+  digitalWrite(PIN1, LOW);
+  digitalWrite(PIN2, HIGH);
   digitalWrite(PIN3, HIGH);
   digitalWrite(PIN4, LOW);
   delay(1000);
